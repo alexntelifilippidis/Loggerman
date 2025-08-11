@@ -10,28 +10,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.13]
-
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
 
-      - name: 🐍 Set up Python
+      - name: 🐍 Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.13"
 
-      - name: 📦 Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install hatch
-          make install dev
-          make activate-dev
+      - name: 📦 Install Hatch
+        run: pip install hatch
 
-      - name: ✅ Run Tests
-        run: make test
+      - name: 🔧 Create Hatch environment
+        run: hatch env create
 
-      - name:  🔎 Type Check & 🧹 Lint
-        run: make lint
+      - name: ✅ Run tests
+        run: hatch run test
+
+      - name: 🔎 Type check with mypy
+        run: hatch run mypy src
+
+      - name: 🧹 Lint with Ruff
+        run: hatch run ruff check .
