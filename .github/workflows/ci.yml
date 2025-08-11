@@ -26,10 +26,10 @@ jobs:
         run: hatch env create
 
       - name: ✅ Run tests
-        run: hatch run test
+        run: hatch test --cover
 
       - name: 🔎 Type check with mypy
-        run: hatch run mypy src
+        run: hatch run check
 
       - name: 🧹 Lint with Ruff
-        run: hatch run ruff check .
+        run: hatch run lint
