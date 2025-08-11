@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: 📦 Install Hatch
+        run: pip install hatch
+
+      - name: 🔧 Create Hatch environment
+        run: hatch env create dev
+
+      - name: ✅ Run tests
+        run: hatch test --cover
+
+      - name: 🔎 Type check with mypy
+        run: hatch run dev:check
+
+      - name: 🧹 Lint with Ruff
+        run: hatch run dev:lint

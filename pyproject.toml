@@ -46,6 +46,7 @@ extra-dependencies = [
 ]
 [tool.hatch.envs.dev.scripts]
 check = "mypy --install-types --non-interactive {args:src/loggerman}"
+lint  = "ruff check ."
 
 [tool.coverage.run]
 source_pkgs = ["loggerman", "tests"]
