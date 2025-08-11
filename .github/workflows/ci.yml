@@ -23,7 +23,7 @@ jobs:
         run: pip install hatch
 
       - name: 🔧 Create Hatch environment
-        run: hatch env create
+        run: hatch env create dev
 
       - name: ✅ Run tests
         run: hatch test --cover
