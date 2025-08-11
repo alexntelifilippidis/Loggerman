@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling>=1.21.0"]
+requires = ["hatchling>=1.21.0", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -37,7 +37,7 @@ Source = "https://github.com/a.ntelifilippidis/loggerman"
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "your_package/_version.py"
+version-file = "src/loggerman/_version.py"
 
 [tool.hatch.envs.dev]
 extra-dependencies = [
