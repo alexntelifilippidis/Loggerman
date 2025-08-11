@@ -29,7 +29,7 @@ jobs:
         run: hatch test --cover
 
       - name: 🔎 Type check with mypy
-        run: hatch run check
+        run: hatch run dev:check
 
       - name: 🧹 Lint with Ruff
-        run: hatch run lint
+        run: hatch run dev:lint
