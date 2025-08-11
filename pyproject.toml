@@ -34,7 +34,10 @@ Documentation = "https://github.com/a.ntelifilippidis/loggerman#readme"
 Source = "https://github.com/a.ntelifilippidis/loggerman"
 
 [tool.hatch.version]
-path = "src/loggerman/__about__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "your_package/_version.py"
 
 [tool.hatch.envs.dev]
 extra-dependencies = [
@@ -52,9 +55,7 @@ lint  = "ruff check ."
 source_pkgs = ["loggerman", "tests"]
 branch = true
 parallel = true
-omit = [
-  "src/loggerman/__about__.py",
-]
+omit = [] # Omit nothing by default, but you can specify files to omit here if needed.
 
 [tool.coverage.paths]
 loggerman = ["src/loggerman", "*/loggerman/src/loggerman"]
